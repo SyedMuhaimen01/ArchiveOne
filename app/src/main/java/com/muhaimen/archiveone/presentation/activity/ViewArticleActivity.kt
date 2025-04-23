@@ -60,6 +60,13 @@ class ViewArticleActivity : AppCompatActivity() {
                 finish()
             }
         }
+
+        binding.deleteButton.setOnClickListener {
+            article?.let { article ->
+                articleViewModel.delete(article)
+                finish()
+            }
+        }
     }
 
 }

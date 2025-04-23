@@ -8,7 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.muhaimen.archiveone.R
 import com.muhaimen.archiveone.databinding.ActivityHomeBinding
 import com.muhaimen.archiveone.presentation.adapter.HomeActivityArticlesAdapter
@@ -20,6 +22,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private val articleViewModel: ArticleViewModel by viewModels()
     private lateinit var articlesAdapter: HomeActivityArticlesAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -30,12 +33,6 @@ class HomeActivity : AppCompatActivity() {
             insets
         }
 
-        /*  val typedValue= TypedValue()
-          val theme = theme
-          theme.resolveAttribute(androidx.appcompat.R.attr.colorPrimary, typedValue, true)
-          window.statusBarColor = typedValue.data
-          window.navigationBarColor = typedValue.data*/
-
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -43,32 +40,43 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this, AddArticleActivity::class.java)
             startActivity(intent)
         }
+
         articlesAdapter = HomeActivityArticlesAdapter(
             onArticleClick = { article ->
                 val intent = Intent(this, ViewArticleActivity::class.java)
                 intent.putExtra("article", article)
                 startActivity(intent)
-            },
-            onArticleLongClick = { article ->
-                val dialog = androidx.appcompat.app.AlertDialog.Builder(this)
-                    .setTitle("Delete Article")
-                    .setMessage("Are you sure you want to delete this article?")
-                    .setPositiveButton("Delete") { _, _ ->
-                        articleViewModel.delete(article)
-                    }
-                    .setNegativeButton("Cancel", null)
-                    .create()
-                dialog.show()
             }
         )
+
+        binding.articlesRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.articlesRecyclerView.adapter = articlesAdapter
-        binding.articlesRecyclerView.layoutManager=LinearLayoutManager(this)
+
+        setupSwipeToDelete()
         observeArticles()
+    }
+
+    private fun setupSwipeToDelete() {
+        val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean = false
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val article = articlesAdapter.currentList[position]
+                articleViewModel.delete(article)
+            }
+        }
+
+        ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(binding.articlesRecyclerView)
     }
 
     private fun observeArticles() {
         lifecycleScope.launch {
-            articleViewModel.allArticles.collect() {
+            articleViewModel.allArticles.collect {
                 articlesAdapter.submitList(it)
             }
         }

@@ -27,6 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
+
             android:textSize="12sp"
             tools:ignore="Autofill,LabelFor,TextFields"/>
         <TextView

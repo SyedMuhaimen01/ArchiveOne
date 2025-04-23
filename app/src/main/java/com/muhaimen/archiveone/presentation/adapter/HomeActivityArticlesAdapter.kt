@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.muhaimen.archiveone.data.dataclass.Article
 import com.muhaimen.archiveone.databinding.ArticleItemBinding
-
+import java.text.SimpleDateFormat
+import java.util.*
 
 class HomeActivityArticlesAdapter(
-    private val onArticleClick: (Article) -> Unit,
-    private val onArticleLongClick: (Article) -> Unit
+    private val onArticleClick: (Article) -> Unit
 ) : ListAdapter<Article, HomeActivityArticlesAdapter.ArticleViewHolder>(ArticleDiffCallback()) {
 
     inner class ArticleViewHolder(
@@ -22,17 +22,12 @@ class HomeActivityArticlesAdapter(
             binding.articleContent.text = article.content
             binding.articleAuthor.text = article.author
 
-            val formattedDate = java.text.SimpleDateFormat("dd MMM yyyy, hh:mm a", java.util.Locale.getDefault())
-                .format(java.util.Date(article.timeStamp))
+            val formattedDate = SimpleDateFormat("dd MMM yyyy, hh:mm a", Locale.getDefault())
+                .format(Date(article.timeStamp))
             binding.articleTime.text = formattedDate
 
             binding.root.setOnClickListener {
                 onArticleClick(article)
-            }
-
-            binding.root.setOnLongClickListener {
-                onArticleLongClick(article)
-                true
             }
         }
     }
