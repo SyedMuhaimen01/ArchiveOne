@@ -1,0 +1,52 @@
+<resources>
+    <!-- Base Colors -->
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- Light Theme Colors -->
+
+    <!-- Primary Colors -->
+    <color name="md_theme_light_primary">#3A3E7B</color> <!-- Midnight Indigo -->
+    <color name="md_theme_light_surface">#FFFFFF</color> <!-- Crisp white -->
+    <color name="md_theme_light_background">#F5F6FA</color> <!-- Light paper-gray -->
+    <color name="md_theme_light_surface_variant">#E4E6EC</color>
+    <color name="md_theme_light_outline">#C4C7D0</color>
+
+    <!-- Text Colors -->
+    <color name="md_theme_light_onPrimary">#FFFFFF</color>
+    <color name="md_theme_light_onSurface">#212436</color> <!-- Elegant deep gray -->
+    <color name="md_theme_light_onBackground">#3E4255</color>
+    <color name="md_theme_light_onSurfaceVariant">#6C7285</color>
+
+    <!-- Accent Colors -->
+    <color name="md_theme_light_secondary">#26A69A</color> <!-- Calm teal -->
+    <color name="md_theme_light_tertiary">#F6BFA5</color> <!-- Soft peach -->
+    <color name="md_theme_light_error">#D64545</color> <!-- Modern red -->
+    <color name="md_theme_light_inversePrimary">#AEB8FF</color> <!-- Soft lilac -->
+    <color name="md_theme_light_warning">#F2A03D</color> <!-- Warm amber -->
+    <color name="md_theme_light_shadow">#1A000000</color>
+
+    <!-- Dark Theme Colors -->
+
+    <!-- Primary Colors -->
+    <color name="md_theme_dark_primary">#AEB8FF</color> <!-- Soft Indigo Highlight -->
+    <color name="md_theme_dark_surface">#121212</color>
+    <color name="md_theme_dark_background">#101218</color> <!-- Rich black-blue -->
+    <color name="md_theme_dark_surface_variant">#1C1F2B</color>
+    <color name="md_theme_dark_outline">#4D515F</color>
+
+    <!-- Text Colors -->
+    <color name="md_theme_dark_onPrimary">#FFFFFF</color>
+    <color name="md_theme_dark_onSurface">#ECEEF1</color>
+    <color name="md_theme_dark_onBackground">#C1C6D0</color>
+    <color name="md_theme_dark_onSurfaceVariant">#9299A9</color>
+
+    <!-- Accent Colors -->
+    <color name="md_theme_dark_secondary">#53DACF</color> <!-- Aqua pop -->
+    <color name="md_theme_dark_tertiary">#F9C6B2</color> <!-- Elegant rose -->
+    <color name="md_theme_dark_error">#F06464</color>
+    <color name="md_theme_dark_inversePrimary">#6D74B0</color>
+    <color name="md_theme_dark_warning">#FFB74D</color>
+    <color name="md_theme_dark_shadow">#1A000000</color>
+</resources>

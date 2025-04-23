@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ArchiveOne</string>
+    <string name="sample_article_title">Article Title</string>
+    <string name="sample_article_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+</resources>
